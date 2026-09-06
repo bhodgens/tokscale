@@ -1134,7 +1134,7 @@ define_clients!(
     Meept = 58 => {
         id: "meept",
         display: "Meept",
-        logo: None,
+        logo: Some("https://raw.githubusercontent.com/junhoyeo/tokscale/main/.github/assets/client-meept.png"),
         root: PathRoot::Home,
         relative: ".meept/metrics.db",
         pattern: "metrics.db",

@@ -147,6 +147,8 @@ fn build_message(row: MeeptUsageRow) -> UnifiedMessage {
             output: row.output.max(0),
             cache_read: row.cache_read.max(0),
             cache_write: row.cache_write.max(0),
+            // Meept does not separate 1-hour cache writes from the rest.
+            cache_write_1h: 0,
             reasoning: row.reasoning.max(0),
         },
         // Meept does not persist per-call cost; pricing is resolved by the
