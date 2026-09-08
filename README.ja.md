@@ -1554,7 +1554,7 @@ AIコーディングツールはクロスプラットフォームの場所にセ
 | Muse Code | `~/.local/share/muse/sessions/` | `%USERPROFILE%\.local\share\muse\sessions\` | 全プラットフォーム共通の XDG 形式パス。`session.jsonl` の `model_completed` 使用量イベントと `subagent/` 記録を解析 |
 | Aside | `~/.aside/u/<account>/sessions/<session>/messages.jsonl` | `%USERPROFILE%\.aside\u\<account>\sessions\<session>\messages.jsonl` | アカウント別のブラウザ使用量。`messages.jsonl` のみを読み、artifacts、memory、passwords は除外。 |
 | Mistral Vibe | `$VIBE_HOME/logs/session/`（既定: `~/.vibe/logs/session/`） | `%VIBE_HOME%\logs\session\`（既定: `%USERPROFILE%\.vibe\logs\session\`） | 全プラットフォーム共通の `~/.vibe` ルート。各セッションディレクトリの `meta.json` の累積 `stats` のみを読み取り、`messages.jsonl` の会話内容は読み取りません |
-| Meept | `~/.meept/metrics.db` | `%USERPROFILE%\.meept\metrics.db` | 呼び出しごとの `llm_calls` 行を読み取り専用で解析（書き込みはしない）；meept スキーマ v2（session_id / reasoning_tokens / cache_creation_tokens 列）が必要；エラー行は使用量を含まないため除外 |
+| Meept | `~/.meept/metrics.db` | `%USERPROFILE%\.meept\metrics.db` | 呼び出しごとの `llm_calls` 行を読み取り専用でパース（書き込みは行わない）。meept スキーマ v2 が必要（session_id / reasoning_tokens / cache_creation_tokens 列）。エラー行は使用量を持たないため除外される |
 
 > **Devin Desktop のエージェント対応**: ローカル使用量の解析は、NDJSON ストリームで `usage_update` イベントを出力する ACP 接続エージェント（例: Cascade/Windsurf、claude-code、opencode）で機能します。既定の **devin-cloud** エージェントはローカルの `usage_update` を出力しないため、使用量はサーバー側にとどまり、アカウントレベルの API なしには tokscale で追跡できません。
 

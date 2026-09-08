@@ -1553,7 +1553,7 @@ AI 코딩 도구들은 크로스 플랫폼 위치에 세션 데이터를 저장�
 | Muse Code | `~/.local/share/muse/sessions/` | `%USERPROFILE%\.local\share\muse\sessions\` | 전 플랫폼 공통 XDG 경로; `session.jsonl`의 `model_completed` 사용량 이벤트와 `subagent/` 기록 파싱 |
 | Aside | `~/.aside/u/<account>/sessions/<session>/messages.jsonl` | `%USERPROFILE%\.aside\u\<account>\sessions\<session>\messages.jsonl` | 계정별 네이티브 브라우저 사용량; `messages.jsonl`만 읽고 artifacts, memory, passwords 제외. |
 | Mistral Vibe | `$VIBE_HOME/logs/session/` (기본값: `~/.vibe/logs/session/`) | `%VIBE_HOME%\logs\session\` (기본값: `%USERPROFILE%\.vibe\logs\session\`) | 전 플랫폼 공통 `~/.vibe` 루트; 각 세션 디렉터리의 `meta.json` 누적 `stats`만 읽고 `messages.jsonl` 대화 내용은 읽지 않음 |
-| Meept | `~/.meept/metrics.db` | `%USERPROFILE%\.meept\metrics.db` | 호출별 `llm_calls` 행을 읽기 전용으로 읽음(쓰지 않음); meept 스키마 v2 필요(session_id / reasoning_tokens / cache_creation_tokens 컬럼); 오류 행에는 사용량이 없으므로 제외 |
+| Meept | `~/.meept/metrics.db` | `%USERPROFILE%\.meept\metrics.db` | 호출별 `llm_calls` 행을 읽기 전용으로 파싱(절대 쓰지 않음); meept 스키마 v2 필요(session_id / reasoning_tokens / cache_creation_tokens 열); 오류 행은 사용량이 없으므로 제외됨 |
 
 > **참고**: Windows에서 `~`는 `%USERPROFILE%`로 확장됩니다 (예: `C:\Users\사용자이름`). 일부 도구는 크로스 플랫폼 일관성을 위해 Unix 스타일 경로(`.local/share` 등)를 사용하고, Goose를 포함한 다른 도구는 위 표의 Windows 기본 경로(`%APPDATA%` 등)를 사용합니다.
 

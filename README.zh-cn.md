@@ -1553,7 +1553,7 @@ AI 编程工具将会话数据存储在跨平台位置。大多数工具在所�
 | Muse Code | `~/.local/share/muse/sessions/` | `%USERPROFILE%\.local\share\muse\sessions\` | 全平台通用 XDG 路径；解析 `session.jsonl` 的 `model_completed` 用量事件及 `subagent/` 记录 |
 | Aside | `~/.aside/u/<account>/sessions/<session>/messages.jsonl` | `%USERPROFILE%\.aside\u\<account>\sessions\<session>\messages.jsonl` | 按账户读取原生浏览器用量；仅扫描 `messages.jsonl`，排除 artifacts、memory 和 passwords。 |
 | Mistral Vibe | `$VIBE_HOME/logs/session/`（默认：`~/.vibe/logs/session/`） | `%VIBE_HOME%\logs\session\`（默认：`%USERPROFILE%\.vibe\logs\session\`） | 全平台通用 `~/.vibe` 根目录；仅读取各会话目录的 `meta.json` 累计 `stats`，不读取 `messages.jsonl` 对话内容 |
-| Meept | `~/.meept/metrics.db` | `%USERPROFILE%\.meept\metrics.db` | 只读解析逐调用的 `llm_calls` 行（从不写入）；需要 meept schema v2（session_id / reasoning_tokens / cache_creation_tokens 列）；错误行不含用量，已被排除 |
+| Meept | `~/.meept/metrics.db` | `%USERPROFILE%\.meept\metrics.db` | 以只读方式解析逐调用的 `llm_calls` 行（从不写入）；需要 meept schema v2（session_id / reasoning_tokens / cache_creation_tokens 列）；错误行不含用量数据，已被排除 |
 
 > **Devin Desktop 代理支持**：本地用量解析适用于会在 NDJSON 流中发出 `usage_update` 事件的 ACP 连接代理（例如 Cascade/Windsurf、claude-code、opencode）。默认的 **devin-cloud** 代理不会发出本地 `usage_update` 事件——其用量仍保留在服务器端，tokscale 无法在没有账号级 API 的情况下跟踪它。
 
